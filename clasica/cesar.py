@@ -13,7 +13,6 @@ for CodedText in f:
                 out += fletra
             else:
                 out += letra
-        print(out)
         k += 1
 ## winner is 21 aka 5
     out = ""
@@ -28,3 +27,17 @@ for CodedText in f:
     p.close()
     p = open('alexoses_21.cesar','w')
     p.write(out)
+    p.close()
+    ree = open('alexoses_21.cesar','r')
+    for text in ree:
+        print('wewae')
+        k = 5
+        out = ""
+        for letra in text:
+            if not letra in especial:
+                number = ord(letra.lower()) - 97
+                fletra = chr(((number+k)%26)+65)
+                out += fletra
+            else:
+                out += letra
+        print(out)
