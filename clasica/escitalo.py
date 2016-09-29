@@ -5,7 +5,7 @@ especial = [' ','`','0','1','2','3','4','5','6','7','8','9','.',',']
 
 
 def printToFile(data,key,extension):
-    f = open("resultadosvig.xd",'w+')
+    f = open("resultadosvig2.xd",'w+')
     f.write(data)
 
 def escitalo():
@@ -43,7 +43,7 @@ def escitalo():
             claveStr = str(clave)
             for c in range(0, clave):
                 for i in range(0, math.ceil(lenght / clave)):
-                    if i * clave + clave < lenght:
+                    if i * clave + clave <= lenght:
                         solucion += data[clave * i + c]
                         print(data[clave * i + c], end="")
             printToFile(solucion, claveStr, "Escitalo")
