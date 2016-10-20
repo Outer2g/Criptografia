@@ -1,0 +1,6 @@
+2) Podemos observar que, si shift rows corresponde a la identidad, el bloque resultante solo cambia en la fila donde el bit i ha sido modificado,
+en cambio, si usamos el shiftrows original, podemos observar que el cambio se ha propagado por varios bits del bloque.
+
+3) si utilizamos el mixing row original podemos observar que al cambiar un bit del mensaje original, esto hace que en el mensaje cifrado haya mas
+de un byte modificado, No obstante si decidimos utilizar la identidad para esta funcion, nos encontramos que solamente cambia el byte que hemos
+alterado al producir Mi
