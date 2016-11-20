@@ -139,10 +139,11 @@ def GF_invers(a):
     global tabla_log
     ret = tabla_exp[255-tabla_log[a]]
     return ret & 0xFF
+GF_Tables()
 number = 0x57
 number2 =0x83
-print(hex(GF_product_p(number,number2)))
-
+print(hex(GF_invers(0xf6)))
+'''
 GF_Tables()
 print(tabla_exp)
 print(tabla_log)
@@ -319,4 +320,4 @@ def initTable(file):
                sys.argv[1]+' '+sys.argv[2]+'</H3><br></body></html>')
     #taula
     file.write('<table style ="width:70%">')
-    file.write('<tr><th>Acte</th><th>adreca</th><th>data</th><th>transport</th></tr>')
+    file.write('<tr><th>Acte</th><th>adreca</th><th>data</th><th>transport</th></tr>')'''

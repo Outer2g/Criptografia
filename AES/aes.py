@@ -125,6 +125,15 @@ class AES:
 
         # print self.round_keys
 
+    def mixthem(self,plaintext):
+        self.plain_state = plaintext
+        self.__shift_rows(self.plain_state,True)
+        return self.plain_state
+    def subbyteit(self,plaintext):
+        self.plain_state = plaintext
+        self.__sub_bytes(self.plain_state,True)
+        return self.plain_state
+
     def encrypt(self, plaintext,useOriginalSub=True,useOriginalShift = True,useOriginalMixing = True):
         self.plain_state = plaintext
 
@@ -228,6 +237,24 @@ def printMatrix3(M,mat,matrix):
     for row in range(len(M)):
         print M[row], '    ' ,mat[row], '    ' ,matrix[row]
 key = 0xae992e5c29c0ab168d7401a29119992e
+aes = AES(key)
+
+M = [[0x1c,0x00,0xFF,0xFF],
+          [0xFF,0xFF,0xFF,0xFF],
+          [0xFF,0xFF,0xFF,0xFF],
+          [0xFF,0xFF,0xFF,0xFF]]
+aux = copy.deepcopy(M)
+print aes.subbyteit(aux)
+print hex(156),hex(99)
+M = [[0x1c,0x00,0xFF,0xFF],
+          [0xFF,0xFF,0xFF,0xFF],
+          [0xFF,0xFF,0xFF,0xFF],
+          [0xFF,0xFF,0xFF,0xFF]]
+print M
+print aes.mixthem(M)
+print M
+
+'''key = 0xae992e5c29c0ab168d7401a29119992e
 aes = AES(key)
 M = [[0x15,0x33,0x7e,0xb3],
           [0x97,0xc1,0x6d,0xea],
@@ -373,4 +400,4 @@ for i in range(len(hist)):
 
 print '--------hist2----------'
 for i in range(len(hist2)):
-    print i,',',hist2[i]
+    print i,',',hist2[i]'''
