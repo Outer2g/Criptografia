@@ -1,0 +1,3 @@
+truncado256(SHA(random.client||random.server||
+	server.key.params.Curve_type||server.key.params.Named_Curve||
+	server.key.params.Pubkey_Length||server.key.params.PubKey))

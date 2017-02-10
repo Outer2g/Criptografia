@@ -1,0 +1,62 @@
+3.a)
+CRT : http://crl3.digicert.com/sha2-ha-server-g5.crl
+
+Revocados : 5089
+
+b) 
+	he descargado el certificado de Digicert(la encargada de verificar el de facebook) y el certificado de facebook, despues he ejecutado la siguiente comanda
+openssl ocsp -issuer DigiCertSHA2HighAssuranceServerCA.crt -cert \*.facebook.com.crt   -url http://ocsp.digicert.com -text
+
+la url venia en un campo del certificado.Resumen comanda: cert good
+
+output:
+OCSP Request Data:
+    Version: 1 (0x0)
+    Requestor List:
+        Certificate ID:
+          Hash Algorithm: sha1
+          Issuer Name Hash: CF26F518FAC97E8F8CB342E01C2F6A109E8E5F0A
+          Issuer Key Hash: 5168FF90AF0207753CCCD9656462A212B859723B
+          Serial Number: 0C0099B7D789C9F66626317EBCEA7C1C
+    Request Extensions:
+        OCSP Nonce: 
+            04107BA210C9B338088CF6296D1E2D3218AD
+OCSP Response Data:
+    OCSP Response Status: successful (0x0)
+    Response Type: Basic OCSP Response
+    Version: 1 (0x0)
+    Responder Id: 5168FF90AF0207753CCCD9656462A212B859723B
+    Produced At: Dec 23 18:29:00 2016 GMT
+    Responses:
+    Certificate ID:
+      Hash Algorithm: sha1
+      Issuer Name Hash: CF26F518FAC97E8F8CB342E01C2F6A109E8E5F0A
+      Issuer Key Hash: 5168FF90AF0207753CCCD9656462A212B859723B
+      Serial Number: 0C0099B7D789C9F66626317EBCEA7C1C
+    Cert Status: good
+    This Update: Dec 23 18:29:00 2016 GMT
+    Next Update: Dec 30 17:44:00 2016 GMT
+
+    Signature Algorithm: sha256WithRSAEncryption
+         11:ea:04:66:93:65:a9:45:92:34:26:14:ab:b5:4a:d2:76:ef:
+         0a:42:6a:93:84:19:71:c6:f9:14:1b:a8:32:25:b5:aa:58:33:
+         02:42:a6:92:28:40:0b:f2:1a:99:b8:15:ca:bc:ec:9a:af:cf:
+         3f:0e:52:f6:b7:20:2c:6b:94:bb:99:31:f2:de:1d:aa:9e:80:
+         02:ff:0b:3e:be:fa:01:a3:5b:33:67:59:7a:30:6e:6c:67:b7:
+         be:e8:da:bd:49:19:35:33:ff:46:7d:c6:45:07:33:6f:21:a3:
+         51:a0:43:04:c5:0c:03:41:0b:a4:06:b3:d6:02:f9:d5:93:1d:
+         e3:2e:13:84:2e:bf:a6:cf:07:69:5e:a9:fa:0a:0a:73:39:92:
+         44:15:79:90:54:52:3b:9f:9f:53:d5:76:85:59:92:4e:3f:f2:
+         1c:a4:df:8a:d7:20:54:13:89:aa:ad:16:09:15:39:61:07:86:
+         f4:0c:6d:e9:91:5e:0e:13:a7:40:33:d5:08:e9:52:bd:31:32:
+         67:b6:b4:13:0f:49:d4:c9:0c:ac:be:01:29:e5:4d:ea:a6:61:
+         93:98:95:a1:2b:a1:ce:bb:3a:2f:09:86:3f:9e:fb:8b:32:1c:
+         b6:83:73:31:eb:91:c3:4d:f5:a1:5e:62:32:0e:61:c3:2e:47:
+         98:5c:e0:73
+WARNING: no nonce in response
+Response Verify Failure
+140391630300832:error:27069076:OCSP routines:OCSP_basic_verify:signer certificate not found:ocsp_vfy.c:85:
+*.facebook.com.crt: good
+	This Update: Dec 23 18:29:00 2016 GMT
+	Next Update: Dec 30 17:44:00 2016 GMT
+
