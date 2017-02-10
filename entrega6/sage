@@ -1,0 +1,46 @@
+︠311b423c-2880-4de5-858c-9d4e4f85114a︠
+p = 115792089210356248762697446949407573530086143415290314195533631308867097853951
+a = -3
+b = 0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b
+orden = 115792089210356248762697446949407573529996955224135760342422259061068512044369
+Gx = 0x6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296
+Gy = 0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5
+
+print 'es el orden primo?',is_prime(orden)
+X = 0xeccaea470e54d43d4ba2c6f32d4049cb7528739ae2d90c561666dc2f366c27a9
+Y = 0xa514d481d8ff88423129883c3ea6cf138530c5fa0242bc45070eb39b98e32b6b
+
+Zp = Zmod(p)
+E = EllipticCurve(Zp,[a,b])
+#orden = E.order()
+print 'orden de la curva', orden
+G = E([Gx,Gy])
+P = E([X,Y])
+print 'es un punto de la curva'
+h = 0xb3ae4a55736ccfad0a3b442e971b3ac916ce3ce16d3e3cecb3e52499fb2b4f85
+f1 = 0x19e20673fd2ab9542a031d90921161c55e82f3d578c801d74de4b739e1554400
+f2 = 0x53d66a337285cc690eddf999ae0e5c4836b7a098c5a9c6a1a986c6d74bd32b09
+aux = mod(f2**(-1),orden)
+w1 = mod(h*aux,orden)
+w2 = mod(f1*aux,orden)
+pubKeyGoogleX = 0x664fca46ef4c681b74760bd89534588794d177252788432e63f8a7d81d287d9e
+pubKeyGoogleY = 0x474e5402beb90a75ae4b2759ff35799223e1ff14aa00c7489bb68c21142edccd
+Q = E([pubKeyGoogleX,pubKeyGoogleY])
+result = Integer(w1) * G +Integer(w2) * Q
+print 'firma correcta?',mod(result[0],orden) == f1
+
+#2 tomando el certificado de facebook, utiliza la misma curva de google.
+pubKeyFacebookX = 0xa0f18cafa73988685b13560e1515b4a745ef1bc7e5853c2b04d4658a313122ea
+pubKeyFacebookY = 0xa392ed649dba6581e3b61276d8b30b45f1ff0a28149c4fdc73a9b3492da076d3
+P = E([pubKeyFacebookX,pubKeyFacebookY])
+print 'el punto de Facebook,¿pertenece a la curva? ', True
+#a
+DNI_concatenado = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+pubKey = G * DNI_concatenado
+print 'clave publica: ',pubKey
+#b
+dni = xxxxxxxx
+aux = mod((dni**3) + (a*dni) + b, p)
+aux2 = mod(aux^((p-1)/2) , p)
+privateKey = mod(aux^((p+1)/4), p)
+print 'clave privada: ', privateKey
